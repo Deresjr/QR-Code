@@ -1,53 +1,24 @@
-# define the functions needed: add, sub, mul, div
-# print options to the user 
-# ask for values
-# call the functions
-# while loop to continue the program until the user wants to exit
+# install all the libraries needed
+# create a function that collects a text and converts it to a qrcode
+# save the qrcode as a image
+# run the function
 
-def add(a, b):
-  answer = a + b
-  print(str(a) + " + " + str(b) + " = " + str(answer) + "\n")
+import qrcode
 
-def sub(a, b):
-  answer = a - b
-  print(str(a) + " - " + str(b) + " = " + str(answer) + "\n")
 
-def mul(a, b):
-  answer = a * b
-  print(str(a) + " * " +  str(b) + " = " + str(answer) + "\n") 
+def generate_qrcode(text):
 
-def div(a, b):
-  answer = a / b
-  print(str(a) + " / " + str(b) + " = " + str(answer) + "\n")
+  qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+  )
 
-while True:
-  print("A, Addition")
-  print("B, Subtraction")
-  print("C, Multiplication")
-  print("D, Division")
-  print("E, Exit")
-  
-  choice = input("input your choice: ")
-  if choice == "a" or choice == "A":
-    print("Addition")
-    a = int(input("input first number:"))
-    b = int(input("input second number: "))
-    add(a, b)
-  elif choice == "b" or choice == "B":
-    print("Subtraction")
-    a = int(input("input first number: "))
-    b = int(input("input second number: "))
-    sub(a, b)
-  elif choice == "c" or choice == "C":
-    print("Multiplication")
-    a = int(input("input first number: "))
-    b = int(input("input second number: "))
-    mul(a, b)
-  elif choice == "d" or choice == "D":
-    print("Division")
-    a = int(input("input first number: "))
-    b = int(input("input second number: "))
-    div(a, b)
-  elif choice == "e" or choice == "E":
-    print("program ended")
-    quit()
+  qr.add_data(text)
+  qr.make(fit=True)
+  img = qr.make_image(fill_color="black", back_color="white")
+  img.save("qrimg.png")
+
+
+generate_qrcode("https://www.codewithderes.com")
