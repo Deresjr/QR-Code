@@ -21,4 +21,4 @@ def generate_qrcode(text):
   img.save("qrimg.png")
 
 
-generate_qrcode("https://www.codewithderes.com")
+generate_qrcode("https://www.linkedin.com/in/deres-benn-jr-145564141?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BrFBqpuj9ScKKsYXiCMOgOQ%3D%3D")
